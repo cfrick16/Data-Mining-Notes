@@ -1,0 +1,40 @@
+Walmart = BIG
+
+Terminology: 
+	Transaction width: Number of items in transaction
+	ItemSet: any collection of - or more items Ex {Eggs, 	Beer}
+	k-itemSet: Item set of size k
+	A transaction contains Itemset x: if x is a subset of 
+		the transaction, Ex: {Bread Diaper, beer, eggs 	
+		contains {bread Diapers}}
+	Support count[o(X)]: Number of transactions that count
+		contain itemset
+	Minsup: Set by me, Minimum support count needed
+
+Association Rule Mining:
+	Support >= minsup threshold
+	Confidence >= minconfidence threshold
+
+Associaition Rule Mining Steps
+	1. Frequent Itemset Generation: Find all the itemsets 
+		that satisfy minsup
+	2. Strong Rule generation: Find all the rules in the
+		frequent itemsets that satisfy minconf
+
+Frequent Itemset Generation
+	Apriori Principle: If an itemset is frequent then all 
+		of its subsets must also be frequent. Also if an 
+		itemset is infrequent then all of its supersets 
+		are also infrequent
+	1. Go to individual items, if they don't meet the 
+		minsup remove them
+	2. Generatate sets of size two with items that meet 
+		minsup, remove those that don't reach minsup
+	3. Check if any subset does not meet minsup. Ex) if 
+		you join {beer, milk} {milk,  eggs} because both 
+		are greater than minsup, however if {beer, eggs} 
+		does not meet minsup then remove {beer, eggs, 
+		milk} without counting 
+	4. Continue until no more remain
+
+

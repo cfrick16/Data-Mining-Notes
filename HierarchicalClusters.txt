@@ -1,0 +1,8 @@
+Hierarchical Clustering:
+	Produces a set of nested clusters, organized as a hierarchichal tree
+	Agglomerative: Starts with points as individual clusters and at each step merges the closest pair of clusters
+	Divisive: Start with one all-inclusive cluster at each step split until only one individual point remains
+
+Defining Proximity:
+	Centroid Distance
+	Distance of The closest points in a cluster
