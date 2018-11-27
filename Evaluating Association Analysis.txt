@@ -1,0 +1,48 @@
+Evaluating Association Analysis
+	- After running Association Analysis, we may have hundreds of "Rules", we need to decide which rules are best
+
+Definitions:
+	Support   : Fraction of transactions that contain both X and Y; P(Y,X)
+	Confidence: Meausures how often item in Y appear in transactions that contain X; P(Y|X)
+	Lift      : Ratio of how often they are bought together to how often they should be bought together if they were 	
+				independent; P(Y,X)/(P(X)*P(Y))
+
+Limitations of Support and Confidence
+	- There are times when both support adn nconfidence are high but the rule produced is not good
+	Ex) Orange Juice -> Milk, 30% support, 75% Confidence; Milk, 90% Support
+	- Confidence ignores the support of milk
+
+Lift: Meausures the ratio of the obserbed frequency of co-occurrence to the expected frequency (AKA surprise or interest)
+	- Probability that they are bought together divided by the probability that they are bought together if they were 	independent
+	- Lift(X->Y) = (P(X,Y))/(P(X)P(Y))
+	- If X and Y were independent lift(X->Y)=1
+	Ex) Orange Juice -> Milk, 30% Support, 75% Confidence
+		Milk                , 90% Support
+		OJ                  , 40% Support
+		Lift(OJ->Milk) =.75/.9 =.3/(.4 * .9)=.83
+		- Since Lift<1, this indicates that there is a negative correlation between milk and OJ
+		- People that buy milk hate OJ, it has been proven
+		- Uri's Hypothesis: "If you do both then you will be shitting your pants."
+
+Contingency Table
+	[         Tea   ~Tea         ]
+	[ Coffee  150    50     200  ]
+	[~Coffee  650    150    800  ]
+	[         800    200    1000 ]
+
+	- Lift(X->Y) = P(X,Y)/(P(X)*P(Y)) = (f11/N)/((f1,/N)(f,1/N)) = (N*f11)/(f1, * f,1) = (1000*150)/(200*800) = .94
+
+
+Redundant Rules
+	- Given two rules that have the same consequent
+		- R: X->Y and R': W->Y, such that W is a subset of X
+		- R: {Diapers, Milk}->{Beer}, R'L {Diapers}->{Beer}
+	- R is considered more general than R' and is removed if R' has the same support because it is more specific
+
+Productive Rules
+	- Given two rules that have the same consequent:
+		R: X->Y and R': W->Y, such that W is a subset of X
+		R: {Diapers, Milk}->{Beer}, R':{Diapers}->{Beer}
+	- Define the Improvement of a rules as
+		imp(X->Y)=c(X->Y)-max{c(X1->Y), c(X2->Y), ..., c(Xn->Y)} where X1, X2 ... Xn are subsets of X
+		c(X->Y) = S(X,Y)/S(Y)
