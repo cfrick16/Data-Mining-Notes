@@ -1,1 +1,48 @@
 Sequence Mining
+	Examples
+		- What people click on in a website and in what order
+		- DNA
+	- Order Matters
+
+Types of Sequential Data
+	- Sequential Data: Order matters but there is no notion of time, ex) DNA, Text
+	- Time-series Data: Order matters, there is also a timestamp or notion of time. ex) Stock Market, buying a series of 
+		things over time
+
+Sequence Data
+	- Sequence contains ordered itemsets
+		- Ex) {(30, 90), (60), (30, 70)}
+		- Items in () don't have a meaninful order, itemsets in the {} have meaninful order
+
+	- Subsequence: s1 is a subsequence of s if s has all the elements of s1 in the same order
+		- Ex) "THW" is a subsequence of "yTiHmW"
+		- For itemset subsquences
+			-EX) {(7)(3,8)(9)(456)(8)}
+				- {(3)(4,5)(8)} is a subsequence
+				- {(3)(4)(5)(8)} in not a subsequence; s has (456) but not an itemset with 4 and a different itemset with 5
+	- Substring: s1 is a substring of s if s contains the exact string s1 with no gaps
+		- Ex) "THW" is NOT a substring of "yTiHmW"
+		- Ex) "HI" is a substring of "klHIpk"
+
+GSP
+	-Apriori based: level-wise/breadth-first search
+	Prefix Search Tree
+		-Start with single itemsets and then add as you go lower but with all possible orders
+	Step 1: Do Apriori
+	Step 2: Be Confused
+	Step 3: Give Up
+
+Time Series Constraints
+	- Maxspan: The Maximum allowed time span of the entire sequence
+	- Maxgap : The Maximum allowed time span between two elements of the sequence; Can't use GSP for some reason
+	- Mingap : The Minimum allowed time span between two elements of the sequence
+
+Support Counting Alternatives
+	- COBJ    : One occurence per object; ex) {P P Q P}, PQ only occurs once 
+	- CWIN    : One occurence per sliding windiow of size maxspan
+	- CMINWIN : Number of minimal windows of occurrence; How many times do PQ occur back to back
+	- CDIST_O : Distinct occurrences within maxspan, with possibility of event-timestamp overlap
+	- CDIST   : CDIST_O But does not have event-timestamp overlap; Can't use the same Q twice
+
+
+
